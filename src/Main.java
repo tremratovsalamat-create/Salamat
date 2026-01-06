@@ -1,25 +1,30 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Fitness Tracker ===");
 
-        User user1 = new User("Анна", 25, 60.0);
-        User user2 = new User("Петр", 30, 75.0);
+        FitnessApp app = new FitnessApp();
 
-        WorkoutPlan plan1 = new WorkoutPlan("Бег", 30, 300);
-        WorkoutPlan plan2 = new WorkoutPlan("Йога", 45, 200);
+        User user1 = new RegularUser("U1", "Alex", 21);
+        User user2 = new RegularUser("U2", "Maria", 25);
 
-        FitnessApp app = new FitnessApp("MyFitness");
-        app.addUser();
-        app.addUser();
+        app.addUser(user1);
+        app.addUser(user2);
 
-        System.out.println(user1.getInfo());
-        System.out.println(user2.getInfo());
-        System.out.println(plan1.getInfo());
-        System.out.println(plan2.getInfo());
-        System.out.println(app.getInfo());
+        app.addWorkoutPlan(new WorkoutPlan("Cardio", 30, 300));
+        app.addWorkoutPlan(new WorkoutPlan("Strength", 45, 450));
+        app.addWorkoutPlan(new WorkoutPlan("Yoga", 60, 200));
 
-        System.out.println("\n=== Сравнение ===");
-        System.out.println("user1 == user2: " + (user1 == user2));
-        System.out.println("Имена равны: " + user1.getName().equals(user2.getName()));
+        System.out.println("SEARCH USER:");
+        System.out.println(app.findUserById("U1"));
+
+        System.out.println("\nFILTER WORKOUTS (>=40 min):");
+        for (WorkoutPlan plan : app.filterByDuration(40)) {
+            System.out.println(plan);
+        }
+
+        System.out.println("\nSORTED BY CALORIES:");
+        app.sortByCalories();
+        for (WorkoutPlan plan : app.getPlans()) {
+            System.out.println(plan);
+        }
     }
 }

@@ -1,4 +1,7 @@
+import java.util.Objects;
+
 public class WorkoutPlan {
+
     private String name;
     private int duration;
     private int calories;
@@ -9,17 +12,37 @@ public class WorkoutPlan {
         this.calories = calories;
     }
 
-    public String getName() { return name; }
-    public int getDuration() { return duration; }
-    public int getCalories() { return calories; }
+    // ENCAPSULATION
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
-    public void setDuration(int duration) { this.duration = duration; }
-    public void setCalories(int calories) { this.calories = calories; }
+    public int getDuration() {
+        return duration;
+    }
 
-    public String getInfo() {
-        return "Тренировка: " + name + ", " + duration + " мин, " + calories + " калорий";
+    public int getCalories() {
+        return calories;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkoutPlan{name='" + name +
+                "', duration=" + duration +
+                ", calories=" + calories + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WorkoutPlan)) return false;
+        WorkoutPlan that = (WorkoutPlan) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
-
 
