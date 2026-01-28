@@ -13,7 +13,7 @@ public abstract class User {
         this.age = age;
     }
 
-    // ENCAPSULATION
+    // INCAPSULATION (GETTERS)
     public String getId() {
         return id;
     }
@@ -24,6 +24,17 @@ public abstract class User {
 
     public int getAge() {
         return age;
+    }
+
+    // INCAPSULATION (SETTERS)
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        if (age > 0) {      // қарапайым валидация
+            this.age = age;
+        }
     }
 
     // POLYMORPHISM
